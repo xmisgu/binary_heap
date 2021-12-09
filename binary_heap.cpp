@@ -82,18 +82,21 @@ public:
         }
     }
 
-    bool remove(unsigned int index) {
-        if (index <= num_of_elements - 1) {
+    void remove(unsigned int index) {
+        /*if (index <= num_of_elements - 1) {
             T* tmparr = new T[arr_size];
             std::copy(array, array + index, tmparr);
             std::copy(array + index + 1, array + arr_size, tmparr + index);
             delete[] array;
             array = tmparr;
             num_of_elements--;
-            return true;
-        }
-        else {
-            return false;
+        }*/
+
+        if (index < num_of_elements && index >= 0) {
+            for (int i = index; i < num_of_elements; i++) {
+                array[i] = array[i + 1];
+            }
+            num_of_elements--;
         }
     }
 
@@ -156,10 +159,6 @@ public:
         return arr.display_array(n);
     }
 
-    D get_n(unsigned int index) {
-        return arr[index];
-    }
-
 private:
     DynamicArr<D> arr;
     
@@ -188,12 +187,12 @@ private:
             }    
         }
         return;
-    } //TODO
+    }
 };
 
 int main()
 {
-  /*  {
+    /*{
         srand(time(NULL));
         BinaryHeap<int> bh;
         for (int i = 0; i < 10; i++) {
